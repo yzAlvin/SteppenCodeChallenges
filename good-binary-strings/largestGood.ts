@@ -23,7 +23,22 @@ const testCases = [
         name: "Simplest good binary string",
         input: "10",
         expectedOutput: "10"
-    }
+    },
+    { 
+        name: "Simple good binary string #1",
+        input: "1010",
+        expectedOutput: "1010"
+    },
+    { 
+        name: "Simple good binary string #2",
+        input: "1100",
+        expectedOutput: "1100"
+    },
+    { 
+        name: "Swap",
+        input: "101100",
+        expectedOutput: "110010"
+    },
 ]
 
 testCases.forEach((testCase) => {
@@ -38,7 +53,19 @@ testCases.forEach((testCase) => {
 function largestGood(binString: string): string {
     if (!isGoodBinaryString(binString)) return "INVALID INPUT"
 
-    return binString
+    let prefixes: string[] = []
+    for (let index = 1; index <= binString.length; index++) {
+        prefixes.push(binString.slice(0, index))
+    }
+    const validPrefixes = prefixes.filter(prefix => isGoodBinaryString(prefix) && prefix != binString)
+    const suffixes = validPrefixes.map(prefix => binString.slice(prefix.length))
+    let largest = Number(binString)
+    for (let index = 0; index < validPrefixes.length; index++) {
+        const joined = Math.max(Number(validPrefixes[index] + suffixes[index]), Number(suffixes[index] + validPrefixes[index]))
+        largest = Math.max(largest, joined)
+    }
+
+    return String(largest)
 }
 
 // private
