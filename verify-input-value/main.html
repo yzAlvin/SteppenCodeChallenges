@@ -5,7 +5,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script>
       const makeInputVerifier = (minimum, maximum) => {
-        return (inputValue) => "Input is less than minimum value"
+        return (inputValue) => {
+          if (inputValue > minimum && inputValue < maximum) {
+            return "Input is in range"
+          } else {
+            return "Input is less than minimum value"
+          }
+        }
       }
     </script>
   </head>
