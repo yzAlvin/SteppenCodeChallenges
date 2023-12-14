@@ -6,6 +6,7 @@
     <script>
       const makeInputVerifier = (minimum, maximum) => {
         return (inputValue) => {
+          if (maximum < minimum) return "ERROR"
           if (inputValue >= minimum && inputValue <= maximum) {
             return "Input is in range"
           } 
