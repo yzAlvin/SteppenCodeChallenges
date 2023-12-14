@@ -25,19 +25,29 @@ const testCases = [
         expectedOutput: "10"
     },
     { 
-        name: "Simple good binary string #1",
+        name: "Simple good binary string",
         input: "1010",
         expectedOutput: "1010"
     },
     { 
-        name: "Simple good binary string #2",
+        name: "Swap #1",
+        input: "101100",
+        expectedOutput: "110010"
+    },
+    {
+        name: "Sample Test #1",
+        input: "11011000",
+        expectedOutput: "11100100"
+    },
+    {
+        name: "Sample Test #2",
         input: "1100",
         expectedOutput: "1100"
     },
     { 
-        name: "Swap",
-        input: "101100",
-        expectedOutput: "110010"
+        name: "Sample Test #3",
+        input: "1101001100",
+        expectedOutput: "1101001100"
     },
 ]
 
