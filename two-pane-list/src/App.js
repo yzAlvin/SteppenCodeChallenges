@@ -32,7 +32,7 @@ function App() {
       </div>
 
       <h3 className="title is-4">Test</h3>
-      <TwoPaneList data={[
+      <TwoPaneList albums={[
         {
           title: "The Second Stage Turbine Blade",
           content: [
