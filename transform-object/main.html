@@ -16,6 +16,9 @@
             return input + 6
           case "string":
             return input + " BLARGH"
+          case "object":
+            if (Array.isArray(input)) return input.map(transform)
+            return transformObject(input)
           default:
             return input
         }
