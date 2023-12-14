@@ -9,8 +9,17 @@
           Object.entries(obj)
             .map(([key, val]) => [key, fun(val)])
         )
+      
+      const transform = (input) => {
+        switch (typeof input){
+          case "number":
+            return input + 6
+          default:
+            return input
+        }
+      }
 
-      const transformObject = (inputObj) => objectMap(inputObj, (val) => val + 6)
+      const transformObject = (inputObj) => objectMap(inputObj, transform)
     </script>
   </head>
 
