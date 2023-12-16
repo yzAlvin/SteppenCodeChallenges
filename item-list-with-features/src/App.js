@@ -3,6 +3,7 @@ import { ItemList } from "./ItemList.jsx"
 import "bulma/css/bulma.min.css"
 
 function App() {
+  const savedItems = localStorage.getItem('items')?.split(",") || []
   return (
     <section className="section">
       <div className="box">
@@ -26,7 +27,7 @@ function App() {
       </div>
 
       <h3 className="title is-4">Test</h3>
-      <ItemList />
+      <ItemList data={savedItems}/>
     </section>
   )
 }
