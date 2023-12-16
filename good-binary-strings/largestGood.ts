@@ -62,23 +62,32 @@ testCases.forEach((testCase) => {
 
 function largestGood(binString: string): string {
     if (!isGoodBinaryString(binString)) return "INVALID INPUT"
-
-    let prefixes: string[] = []
-    for (let index = 1; index <= binString.length; index++) {
-        prefixes.push(binString.slice(0, index))
-    }
-    const validPrefixes = prefixes.filter(prefix => isGoodBinaryString(prefix) && prefix != binString)
-    const suffixes = validPrefixes.map(prefix => binString.slice(prefix.length))
-    let largest = Number(binString)
-    for (let index = 0; index < validPrefixes.length; index++) {
-        const joined = Math.max(Number(validPrefixes[index] + suffixes[index]), Number(suffixes[index] + validPrefixes[index]))
-        largest = Math.max(largest, joined)
-    }
-
-    return String(largest)
+    return largestGoodAlgo(binString)
 }
 
 // private
+
+function largestGoodAlgo(binString: string): string {
+    if (binString.length == 0) return binString
+
+    const goodSubstrings: string [] = []
+    let balance = 0
+    let startIndex = 0
+
+    for (let index = 0; index < binString.length; index++) {
+        const digit = binString[index]
+        balance += digit === "1" ? 1 : -1
+
+        if (balance == 0) {
+            const remainingSubstring = largestGoodAlgo(binString.substring(startIndex + 1, index))
+            const goodSubstring = `1${remainingSubstring}0`
+            goodSubstrings.push(goodSubstring)
+            startIndex = index + 1
+        }
+    }
+    goodSubstrings.sort((a, b) => b.localeCompare(a))
+    return goodSubstrings.join("")
+}
 
 function isValidBinaryString(binString: string): boolean {
     return binString.length > 0 && 
